@@ -1,5 +1,5 @@
 #!/bin/bash
-debug=0
+debug=1
 ladate=$(date +%F_%T)
 fichierCycPrec="/home/jerome/NextCloud/Massa/numerocycleprecedent.txt"
 cycleprecedent=$(cat $fichierCycPrec)
