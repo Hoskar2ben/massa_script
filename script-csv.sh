@@ -8,13 +8,13 @@ cycleprecedent=$(cat $fichierCycPrec)
 if [ $debug == 1 ]
 	then
 	#wallet_info=$(cat /home/jerome/Massa/crontab_script/wallet_info.txt)
-	get_addresses=$(cat /home/jerome/Massa/crontab_script/get_addresses.txt)
-	get_status=$(cat /home/jerome/Massa/crontab_script/get_status.txt)
+	get_addresses=$(/home/x/massa_script/script-get_addresses.sh)
+	get_status=$(/home/x/massa_script/script-get_status.sh)
 	echo "Mode debug"
 	else
 	#wallet_info=$(docker container exec -it massatest-01 /Massa/script-wallet_info.sh)
-	get_addresses=$(docker container exec massatest-01 /Massa/script-get_addresses.sh)
-	get_status=$(docker container exec massatest-01 /Massa/script-get_status.sh)
+	get_addresses=$(/home/x/massa_script/script-get_addresses.sh)
+	get_status=$(/home/x/massa_script/script-get_status.sh)
 fi
 
 #cycle=100
@@ -31,19 +31,19 @@ inconnections=$(echo "$get_status" | grep In | awk -F ' ' '{print $3}')
 outconnections=$(echo "$get_status" | grep Out | awk -F ' ' '{print $3}')
 bannedpeers=$(echo "$get_status" | grep Banned | awk -F ' ' '{print $3}')
 
-fichier="/home/jerome/NextCloud/Massa/suivi-"$(( $cycle / 100 ))".csv"
+fichier="/home/x/suivi-"$(( $cycle / 100 ))".csv"
 
 if [ $candidaterolls == 0 ]
 	then
-	temp=$(docker container exec massatest-01 /Massa/script-buy_rolls.sh 1)
+	#temp=$(docker container exec massatest-01 /Massa/script-buy_rolls.sh 1)
 fi
 
 if [ $cycleprecedent -lt $cycle ]
 	then
 	remarque="achete et vend 1 roll"
-	temp=$(docker container exec massatest-01 /Massa/script-buy_rolls.sh 1)
+	#temp=$(docker container exec massatest-01 /Massa/script-buy_rolls.sh 1)
 	sleep 1m
-	temp=$(docker container exec massatest-01 /Massa/script-sell_rolls.sh 1)
+	#temp=$(docker container exec massatest-01 /Massa/script-sell_rolls.sh 1)
 	echo $cycle > $fichierCycPrec
 	if [ $debug == 1 ]
 		then
