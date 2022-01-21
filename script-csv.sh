@@ -33,10 +33,10 @@ bannedpeers=$(echo "$get_status" | grep Banned | awk -F ' ' '{print $3}')
 
 fichier="/home/x/suivi-"$(( $cycle / 100 ))".csv"
 
-if [ $candidaterolls == 0 ]
-	then
+#if [ $candidaterolls == 0 ]
+#	then
 	#temp=$(docker container exec massatest-01 /Massa/script-buy_rolls.sh 1)
-fi
+#fi
 
 if [ $cycleprecedent -lt $cycle ]
 	then
