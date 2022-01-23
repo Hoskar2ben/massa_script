@@ -8,13 +8,13 @@ cycleprecedent=$(cat $fichierCycPrec)
 if [ $debug == 1 ]
 	then
 	#wallet_info=$(cat /home/jerome/Massa/crontab_script/wallet_info.txt)
-	get_addresses=$(/home/x/massa_script/script-get_addresses.sh)
-	get_status=$(/home/x/massa_script/script-get_status.sh)
+	get_addresses=$(/home/$USER/massa_script/script-get_addresses.sh)
+	get_status=$(/home/$USER/massa_script/script-get_status.sh)
 	echo "Mode debug"
 	else
 	#wallet_info=$(docker container exec -it massatest-01 /Massa/script-wallet_info.sh)
-	get_addresses=$(/home/x/massa_script/script-get_addresses.sh)
-	get_status=$(/home/x/massa_script/script-get_status.sh)
+	get_addresses=$(/home/$USER/massa_script/script-get_addresses.sh)
+	get_status=$(/home/$USER/massa_script/script-get_status.sh)
 fi
 
 #cycle=100
@@ -83,7 +83,7 @@ if [ $debug == 1 ]
 		then
 		echo "Creation fichier $fichier"
 		echo "ladate,cycle,activerolls,finalrolls,candidaterolls,produced,failed,finalbalance,candidatebalance,lockedbalance,inconnections,outconnections,bannedpeers" > $fichier
-		chown jerome.jerome $fichier
+		chown $USER.$USER $fichier
 		chmod a+rw $fichier
 	fi
 	echo "$laligne" >> $fichier
